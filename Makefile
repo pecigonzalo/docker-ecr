@@ -1,6 +1,6 @@
 default: pre_build build
 
-pre_build: ./amazon-ecr-credential-helper/Dockerfile
+pre_build:
 	docker build -t gobuilder ./amazon-ecr-credential-helper/
 	docker run --rm \
 		-e TARGET_GOOS=$(TARGET_GOOS) \

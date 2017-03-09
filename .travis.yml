@@ -6,10 +6,8 @@ branches:
     - master
 
 install:
-- make deps
 - export TAG=`if [[ "$TRAVIS_BRANCH" == "master" ]]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
 - export REPO=pecigonzalo/$IMAGE_NAME
-- make init
 
 before_script:
 - make pre_build
