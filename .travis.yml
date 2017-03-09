@@ -1,0 +1,25 @@
+language: universe
+services:
+- docker
+branches:
+  only:
+    - master
+
+install:
+- make deps
+- export TAG=`if [[ "$TRAVIS_BRANCH" == "master" ]]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+- export REPO=pecigonzalo/$IMAGE_NAME
+- make init
+
+before_script:
+- make pre_build
+
+script:
+- make build
+- make deploy
+
+env:
+  global:
+    - IMAGE_NAME=docker-ecr
+    - VERSION=0.1
+    - DOCKER_COMPOSE_VERSION=1.11.2
